@@ -15,6 +15,7 @@ class BookService(
 
     val bookRepository: BookRepository
 ) {
+
     fun create(book: BookModel) {
         bookRepository.save(book)
     }
@@ -39,11 +40,13 @@ class BookService(
         return bookRepository.findByStatus(BookStatus.DELETADO, pageable)
     }
 
-    fun findById(id: Int): BookModel {
-        return bookRepository.findById(id).orElseThrow{NotFoundException(
-             Errors.ML101.message.format(id),
-             Errors.ML101.code)}
-    }
+    fun findById(id: Int): BookModel = bookRepository.findById(id).orElseThrow{ NotFoundException(Errors.ML101.message.format(id), Errors.ML101.code) }
+
+//    fun findById(id: Int): BookModel {
+//        return bookRepository.findById(id).orElseThrow{NotFoundException(
+//             Errors.ML101.message.format(id),
+//             Errors.ML101.code)}
+//    }
 
     fun delete(id: Int) {
         val book = findById(id)
