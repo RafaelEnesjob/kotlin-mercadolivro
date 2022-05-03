@@ -11,6 +11,9 @@ data class PostCustomerRequest(
     var name: String,
     @field:Email(message = "E-mail deve ser válido")
     @EmailAvaliable
-    var email: String
+    var email: String,
+
+    @field:NotEmpty(message = "Senha deve ser informada")
+    var password: String
 )
 
